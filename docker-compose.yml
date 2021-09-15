@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  mongo:
+    image: 'mongo:latest'
+    ports:
+      - '17017:27017'
+    command: mongod
+  redis:
+    image: 'redis:latest'
+    command: redis-server
+  movies-service:
+    build: ./server/services/movies
+  tv-service:
+    build: ./server/services/tv_series
+  orchestrator:
+    build: ./server/orchestrator
+    ports:
+      - '4000:4000'
